@@ -83,4 +83,5 @@ production:
   <<: *default
   database: bus_production
   username: bus
+  url: <%= ENV['DATABASE_URL'] %>
   password: <%= ENV['BUS_DATABASE_PASSWORD'] %>
