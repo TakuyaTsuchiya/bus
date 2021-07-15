@@ -1,6 +1,8 @@
 <h1>レインボーバス時刻表</h1>
 
-現在の時刻：<%= Time.zone.now.strftime("%H:%M") %>
+<h3>現在の時刻：<%= Time.zone.now.strftime("%H:%M") %></h3>
+
+
 
 <!--<ul>-->
   <%#- @bus_flows.each do |flow| %>
@@ -13,7 +15,7 @@
   <%#- end %>
 <!--</ul>-->
 
-<table>
+<table border="1">
   <tbody>
     <%- @bus_stops.each do |stop| %>
       <tr>
@@ -34,7 +36,7 @@
             ↓
           <% end %>
         </td>
-      <% end %>>
+      <% end %>
       </tr>
     <% end %>
   </tbody>
