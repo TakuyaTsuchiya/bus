@@ -2,8 +2,20 @@
 
 <h3>現在の時刻：<%= Time.zone.now.strftime("%H:%M") %></h3>
 
+<%= form_with url: root_path, method: :get do |f| %>
+  <p>
+    出発駅
+    <%= f.collection_select :start_bus_stop_id, @bus_stops, :id, :name, selected: @start_bus_stop.id %>
+  </p>
+  <p>
+    到着駅
+    <%= f.collection_select :end_bus_stop_id, @bus_stops, :id, :name, selected: @end_bus_stop.id %>
+  </p>
 
+  <%= f.submit "送信する" %>
+<% end %>　
 
+<br>
 <!--<ul>-->
   <%#- @bus_flows.each do |flow| %>
     <%#- flow.bus_stop_orders.each do |order| %>
@@ -30,7 +42,7 @@
             <%= order.arrived_time.strftime("%H:%M") %>
 
             <% if order == @target_order %>
-              これやで
+              ←これやで
             <% end %>
           <% else %>
             ↓

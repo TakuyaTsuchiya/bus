@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_args (2.6.0)
     actioncable (6.1.4)
       actionpack (= 6.1.4)
       activesupport (= 6.1.4)
@@ -177,6 +178,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action_args
   bootsnap (>= 1.4.4)
   byebug
   jbuilder (~> 2.7)
