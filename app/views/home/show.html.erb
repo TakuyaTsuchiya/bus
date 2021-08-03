@@ -1,39 +1,19 @@
 <h1>レインボーバス時刻表</h1>
 
-<h3>現在の時刻：<%= Time.zone.now.strftime("%H:%M") %></h3>
+現在の時刻: <%= Time.zone.now %>
 
-<%= form_with url: root_path, method: :get do |f| %>
-  <p>
-    出発駅
-    <%= f.collection_select :start_bus_stop_id, @bus_stops, :id, :name, selected: @start_bus_stop.id %>
-  </p>
-  <p>
-    到着駅
-    <%= f.collection_select :end_bus_stop_id, @bus_stops, :id, :name, selected: @end_bus_stop.id %>
-  </p>
+<div data-component-name="BusForm" data-component-props=<%= { actionUrl: root_path, busStops: @bus_stops.map { |bus_stop| { id: bus_stop.id, name: bus_stop.name }}, selectedStartBusStopId: @start_bus_stop&.id, selectedEndBusStopId: @end_bus_stop&.id }.to_json %>>
+</div>
 
-  <%= f.submit "送信する" %>
-<% end %>　
+<hr />
 
-<br>
-<!--<ul>-->
-  <%#- @bus_flows.each do |flow| %>
-    <%#- flow.bus_stop_orders.each do |order| %>
-<!--      <li>-->
-<!--        名前： <%#= order.bus_stop.name %>-->
-<!--        時間： <%#= order.arrived_time %>-->
-<!--      </li>-->
-    <%#- end %>
-  <%#- end %>
-<!--</ul>-->
-
-<table border="1">
+<table>
   <tbody>
-    <%- @bus_stops.each do |stop| %>
-      <tr>
-        <td>
-          <%= stop.name %>
-        </td>
+  <%- @bus_stops.each do |stop| %>
+    <tr>
+      <td>
+        <%= stop.name %>
+      </td>
 
       <%- @bus_flows.each do |flow| %>
         <td>
@@ -42,14 +22,14 @@
             <%= order.arrived_time.strftime("%H:%M") %>
 
             <% if order == @target_order %>
-              ←これやで
+              これやで
             <% end %>
           <% else %>
             ↓
           <% end %>
         </td>
       <% end %>
-      </tr>
-    <% end %>
+    </tr>
+  <% end %>
   </tbody>
 </table>
