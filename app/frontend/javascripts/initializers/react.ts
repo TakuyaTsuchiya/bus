@@ -7,6 +7,7 @@ const PROPS_KEY = "data-component-props";
 const containerMap = {
     Hello: import("../components/Hello"),
     BusForm: import("../components/BusForm"),
+    BusStopOrderList: import("../components/BusStopOrderList"),
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -14,7 +14,8 @@ type Props = {
     selectedEndBusStopId: string | null;
 }
 
-export const BusForm: FC<Props> = ({ actionUrl, busStops, selectedStartBusStopId, selectedEndBusStopId }) => {
+export const BusForm: FC<Props> =
+    ({ actionUrl, busStops, selectedStartBusStopId, selectedEndBusStopId }) => {
     return(
         <form action={actionUrl} method="get" >
             <p>
@@ -43,17 +44,19 @@ export const BusForm: FC<Props> = ({ actionUrl, busStops, selectedStartBusStopId
                 </select>
             </p>
 
-            <input type="submit" value="送信" css={styles.submitButton} />
+            <input type="submit" value="確定する" css={styles.submitButton} />
         </form>
     )
 }
 
 const styles = {
     submitButton: css({
-        color: "orange",
+        borderColor: "white",
+        backgroundColor: "hotpink",
+        color: "black",
+        borderRadius: "5px",
 
         "&:hover": {
-            backgroundColor: "orange",
             color: "white",
         }
     }),

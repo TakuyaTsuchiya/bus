@@ -2,7 +2,7 @@
   "name": "bus",
   "private": true,
   "scripts": {
-    "dev:server": "webpack serve --progress --color --config webpack.config.js"
+    "dev:server": "NODE_ENV=development webpack serve --progress --color --config webpack.config.js"
   },
   "dependencies": {
     "@babel/core": "*",
@@ -14,6 +14,7 @@
     "@webpack-cli/serve": "*",
     "babel-loader": "*",
     "core-js": "*",
+    "dayjs": "^1.10.6",
     "react": "^16",
     "react-dom": "*",
     "webpack": "*",

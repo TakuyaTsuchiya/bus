@@ -7,29 +7,29 @@
 
 <hr />
 
-<table>
-  <tbody>
-  <%- @bus_stops.each do |stop| %>
-    <tr>
-      <td>
-        <%= stop.name %>
-      </td>
-
-      <%- @bus_flows.each do |flow| %>
-        <td>
-          <%- order = @bus_stop_orders.find_by(bus_flows: flow, bus_stop: stop) %>
-          <%- if order %>
-            <%= order.arrived_time.strftime("%H:%M") %>
-
-            <% if order == @target_order %>
-              これやで
-            <% end %>
-          <% else %>
-            ↓
-          <% end %>
-        </td>
-      <% end %>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div
+  data-component-name="BusStopOrderList"
+  data-component-props=<%= {
+                             busStops: @bus_stops.map do |bus_stop|
+                               {
+                                 id: bus_stop.id,
+                                 name: bus_stop.name,
+                               }
+                             end,
+                             busFlows: @bus_flows.map do |bus_flow|
+                               {
+                                 id: bus_flow.id,
+                               }
+                             end,
+                             busStopOrders: @bus_stop_orders.map do |bus_stop_order|
+                               {
+                                 id: bus_stop_order.id,
+                                 busFlowId: bus_stop_order.bus_flow_id,
+                                 busStopId: bus_stop_order.bus_stop_id,
+                                 arrivedTime: bus_stop_order.arrived_time,
+                               }
+                             end,
+                             targetBusStopOrderId: @target_order&.id,
+                           }.to_json
+%>>
+</div>
